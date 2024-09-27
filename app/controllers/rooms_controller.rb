@@ -1,6 +1,10 @@
 class RoomsController < ApplicationController
   def new
-    
+    @room = Room.new
+  end
+
+  def end_chat
+    # チャットを終了するためのロジックをここに追加
   end
 
   def create

@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'messages/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
   root to: "rooms#index"
   resources :users, only: [:edit, :update]
-  resources :rooms, only: [:new, :create]
+  resources :rooms, only: [:new, :create] do
+    member do
+      get 'end_chat'
+    end
+    resources :messages, only: [:index, :create]
+  end
 end
